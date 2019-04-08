@@ -1,0 +1,979 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HCB_ABBOTTModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HCB_ABBOTTModelStoreContainer">
+          <EntitySet Name="Admin_Info" EntityType="HCB_ABBOTTModel.Store.Admin_Info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Event_Info" EntityType="HCB_ABBOTTModel.Store.Event_Info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HCP_Info" EntityType="HCB_ABBOTTModel.Store.HCP_Info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="History_Payment" EntityType="HCB_ABBOTTModel.Store.History_Payment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rate" EntityType="HCB_ABBOTTModel.Store.Rate" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Service_Cost" EntityType="HCB_ABBOTTModel.Store.Service_Cost" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Service_Criteria" EntityType="HCB_ABBOTTModel.Store.Service_Criteria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_Create_Rate" EntityType="HCB_ABBOTTModel.Store.User_Create_Rate" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserName" EntityType="HCB_ABBOTTModel.Store.UserName" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Event_Info_Admin_Info" Association="HCB_ABBOTTModel.Store.FK_Event_Info_Admin_Info">
+            <End Role="Admin_Info" EntitySet="Admin_Info" />
+            <End Role="Event_Info" EntitySet="Event_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Payment_Event_Info" Association="HCB_ABBOTTModel.Store.FK_History_Payment_Event_Info">
+            <End Role="Event_Info" EntitySet="Event_Info" />
+            <End Role="History_Payment" EntitySet="History_Payment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Region" Type="nvarchar" MaxLength="150" />
+          <Property Name="Area" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Event_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Admin_Info" Type="int" />
+          <Property Name="Abbott_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Event_Time" Type="date" />
+          <Property Name="Request_Date" Type="date" />
+          <Property Name="Area" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Note" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HCP_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Full_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Citizen_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Issue_Date" Type="date" />
+          <Property Name="Place_Issue" Type="nvarchar" MaxLength="150" />
+          <Property Name="PIT_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="Birth_Day" Type="date" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Bank_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Bank_Account" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity_Event" Type="int" />
+          <Property Name="Money_Received" Type="float" />
+          <Property Name="Note" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+          <Property Name="CMND_MT" Type="varbinary(max)" />
+          <Property Name="CMND_MS" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="History_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Event" Type="int" />
+          <Property Name="HCP_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number_Contract" Type="nvarchar" MaxLength="150" />
+          <Property Name="FromDate" Type="date" />
+          <Property Name="ToDate" Type="date" />
+          <Property Name="Value_Contract" Type="float" />
+          <Property Name="PPL_GetContract_Date" Type="date" />
+          <Property Name="Rep_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Sup_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Account_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Requested_Value" Type="float" />
+          <Property Name="Requested_Date" Type="date" />
+          <Property Name="PPL_Payment_Date" Type="date" />
+          <Property Name="Payment_Value" Type="float" />
+          <Property Name="Invoice_Abbott" Type="bit" />
+          <Property Name="Report_Abbott_Date" Type="date" />
+          <Property Name="Note" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Rate_Name" Type="nvarchar(max)" />
+          <Property Name="Rate_Value" Type="float" />
+        </EntityType>
+        <EntityType Name="Service_Cost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Service_Criteria" Type="int" Nullable="false" />
+          <Property Name="ID_Event" Type="int" />
+          <Property Name="Honorarium_fee" Type="float" />
+          <Property Name="Air_ticket" Type="float" />
+          <Property Name="Meal_fee" Type="float" />
+          <Property Name="Hotel_fee" Type="float" />
+          <Property Name="Car_rental" Type="float" />
+          <Property Name="Other_fees" Type="float" />
+          <Property Name="Total_costs" Type="float" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Service_Criteria">
+          <Key>
+            <PropertyRef Name="ID_Details" />
+          </Key>
+          <Property Name="ID_Details" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Details" Type="nvarchar" MaxLength="150" />
+          <Property Name="ID_Rate" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_Create_Rate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_User_Name" Type="int" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id_rate" Type="int" />
+        </EntityType>
+        <EntityType Name="UserName">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="date" />
+          <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Event_Info_Admin_Info">
+          <End Role="Admin_Info" Type="HCB_ABBOTTModel.Store.Admin_Info" Multiplicity="0..1" />
+          <End Role="Event_Info" Type="HCB_ABBOTTModel.Store.Event_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin_Info">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Event_Info">
+              <PropertyRef Name="Id_Admin_Info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Payment_Event_Info">
+          <End Role="Event_Info" Type="HCB_ABBOTTModel.Store.Event_Info" Multiplicity="0..1" />
+          <End Role="History_Payment" Type="HCB_ABBOTTModel.Store.History_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event_Info">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="History_Payment">
+              <PropertyRef Name="Id_Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Get_Export_From_ToTime_Event_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromtime" Type="nvarchar" Mode="In" />
+          <Parameter Name="totime" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Get_Export_From_ToTime_HCP_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromtime" Type="nvarchar" Mode="In" />
+          <Parameter Name="totime" Type="nvarchar" Mode="In" />
+          <Parameter Name="place" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Get_History_Payment_By_Event" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_event" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_List_Chi_Tiet_Dich_Vu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Get_List_Event_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="event_time" Type="date" Mode="In" />
+          <Parameter Name="request_date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Get_List_HCP_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="citizen_place" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Get_Service_Cost_byUsr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="idRateArray" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_event" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_Service_User_Create_Rate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetRate_byUsr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="idRateArray" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="List_Select_Place_Issue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HCB_ABBOTTModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HCB_ABBOTTEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin_Info" EntityType="HCB_ABBOTTModel.Admin_Info" />
+          <EntitySet Name="Event_Info" EntityType="HCB_ABBOTTModel.Event_Info" />
+          <EntitySet Name="History_Payment" EntityType="HCB_ABBOTTModel.History_Payment" />
+          <AssociationSet Name="FK_Event_Info_Admin_Info" Association="HCB_ABBOTTModel.FK_Event_Info_Admin_Info">
+            <End Role="Admin_Info" EntitySet="Admin_Info" />
+            <End Role="Event_Info" EntitySet="Event_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Payment_Event_Info" Association="HCB_ABBOTTModel.FK_History_Payment_Event_Info">
+            <End Role="Event_Info" EntitySet="Event_Info" />
+            <End Role="History_Payment" EntitySet="History_Payment" />
+          </AssociationSet>
+          <FunctionImport Name="List_Select_Place_Issue" ReturnType="Collection(String)" />
+          <EntitySet Name="UserNames" EntityType="HCB_ABBOTTModel.UserName" />
+          <FunctionImport Name="Get_List_Event_Info" ReturnType="Collection(HCB_ABBOTTModel.Get_List_Event_Info_Result)">
+            <Parameter Name="event_time" Mode="In" Type="DateTime" />
+            <Parameter Name="request_date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Get_History_Payment_By_Event" ReturnType="Collection(HCB_ABBOTTModel.Get_History_Payment_By_Event_Result)">
+          <Parameter Name="id_event" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Rates" EntityType="HCB_ABBOTTModel.Rate" />
+          <EntitySet Name="Service_Cost" EntityType="HCB_ABBOTTModel.Service_Cost" />
+          <EntitySet Name="Service_Criteria" EntityType="HCB_ABBOTTModel.Service_Criteria" />
+          <EntitySet Name="User_Create_Rate" EntityType="HCB_ABBOTTModel.User_Create_Rate" />
+          <FunctionImport Name="Get_List_Chi_Tiet_Dich_Vu" ReturnType="Collection(HCB_ABBOTTModel.Get_List_Chi_Tiet_Dich_Vu_Result)" />
+          <FunctionImport Name="Get_Service_Cost_byUsr">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="idRateArray" Mode="In" Type="String" />
+            <Parameter Name="id_event" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Service_User_Create_Rate" ReturnType="Collection(HCB_ABBOTTModel.Get_Service_User_Create_Rate_Result)">
+          <Parameter Name="user" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetRate_byUsr">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="idRateArray" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Export_From_ToTime_Event_Payment" ReturnType="Collection(HCB_ABBOTTModel.Get_Export_From_ToTime_Event_Payment_Result)">
+            <Parameter Name="fromtime" Mode="In" Type="String" />
+            <Parameter Name="totime" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Export_From_ToTime_HCP_Info" ReturnType="Collection(HCB_ABBOTTModel.Get_Export_From_ToTime_HCP_Info_Result)">
+            <Parameter Name="fromtime" Mode="In" Type="String" />
+            <Parameter Name="totime" Mode="In" Type="String" />
+            <Parameter Name="place" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="HCP_Info" EntityType="HCB_ABBOTTModel.HCP_Info" />
+          <FunctionImport Name="Get_List_HCP_Info" ReturnType="Collection(HCB_ABBOTTModel.Get_List_HCP_Info_Result)">
+            <Parameter Name="citizen_place" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Admin_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FullName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Region" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Create_Date" Type="DateTime" Precision="0" />
+          <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Event_Info" Relationship="HCB_ABBOTTModel.FK_Event_Info_Admin_Info" FromRole="Admin_Info" ToRole="Event_Info" />
+        </EntityType>
+        <EntityType Name="Event_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Admin_Info" Type="Int32" />
+          <Property Name="Abbott_Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Event_Time" Type="DateTime" Precision="0" />
+          <Property Name="Request_Date" Type="DateTime" Precision="0" />
+          <Property Name="Area" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Note" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Create_Date" Type="DateTime" Precision="0" />
+          <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Admin_Info" Relationship="HCB_ABBOTTModel.FK_Event_Info_Admin_Info" FromRole="Event_Info" ToRole="Admin_Info" />
+          <NavigationProperty Name="History_Payment" Relationship="HCB_ABBOTTModel.FK_History_Payment_Event_Info" FromRole="Event_Info" ToRole="History_Payment" />
+        </EntityType>
+        <EntityType Name="History_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Event" Type="Int32" />
+          <Property Name="HCP_Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Number_Contract" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FromDate" Type="DateTime" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Precision="0" />
+          <Property Name="Value_Contract" Type="Double" />
+          <Property Name="PPL_GetContract_Date" Type="DateTime" Precision="0" />
+          <Property Name="Rep_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Sup_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Account_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Requested_Value" Type="Double" />
+          <Property Name="Requested_Date" Type="DateTime" Precision="0" />
+          <Property Name="PPL_Payment_Date" Type="DateTime" Precision="0" />
+          <Property Name="Payment_Value" Type="Double" />
+          <Property Name="Invoice_Abbott" Type="Boolean" />
+          <Property Name="Report_Abbott_Date" Type="DateTime" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Create_Date" Type="DateTime" Precision="0" />
+          <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Event_Info" Relationship="HCB_ABBOTTModel.FK_History_Payment_Event_Info" FromRole="History_Payment" ToRole="Event_Info" />
+        </EntityType>
+        <Association Name="FK_Event_Info_Admin_Info">
+          <End Type="HCB_ABBOTTModel.Admin_Info" Role="Admin_Info" Multiplicity="0..1" />
+          <End Type="HCB_ABBOTTModel.Event_Info" Role="Event_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin_Info">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Event_Info">
+              <PropertyRef Name="Id_Admin_Info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Payment_Event_Info">
+          <End Type="HCB_ABBOTTModel.Event_Info" Role="Event_Info" Multiplicity="0..1" />
+          <End Type="HCB_ABBOTTModel.History_Payment" Role="History_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event_Info">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="History_Payment">
+              <PropertyRef Name="Id_Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserName">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FullName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PassWord" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Create_Date" Precision="0" />
+          <Property Type="String" Name="Create_User" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="Get_List_Event_Info_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="Id_Admin_Info" Nullable="true" />
+          <Property Type="String" Name="Abbott_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Event_Time" Nullable="true" />
+          <Property Type="DateTime" Name="Request_Date" Nullable="true" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" />
+          <Property Type="String" Name="Create_User" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Get_History_Payment_By_Event_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="Id_Event" Nullable="true" />
+          <Property Type="String" Name="HCP_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Number_Contract" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FromDate" Nullable="true" />
+          <Property Type="DateTime" Name="ToDate" Nullable="true" />
+          <Property Type="Double" Name="Value_Contract" Nullable="true" />
+          <Property Type="DateTime" Name="PPL_GetContract_Date" Nullable="true" />
+          <Property Type="String" Name="Rep_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Sup_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Account_Name" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Requested_Value" Nullable="true" />
+          <Property Type="DateTime" Name="Requested_Date" Nullable="true" />
+          <Property Type="DateTime" Name="PPL_Payment_Date" Nullable="true" />
+          <Property Type="Double" Name="Payment_Value" Nullable="true" />
+          <Property Type="Boolean" Name="Invoice_Abbott" Nullable="true" />
+          <Property Type="DateTime" Name="Report_Abbott_Date" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" />
+          <Property Type="String" Name="Create_User" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Citizen_ID" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Rate_Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Rate_Value" />
+        </EntityType>
+        <EntityType Name="Service_Cost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ID_Service_Criteria" Nullable="false" />
+          <Property Type="Int32" Name="ID_Event" />
+          <Property Type="Double" Name="Honorarium_fee" />
+          <Property Type="Double" Name="Air_ticket" />
+          <Property Type="Double" Name="Meal_fee" />
+          <Property Type="Double" Name="Hotel_fee" />
+          <Property Type="Double" Name="Car_rental" />
+          <Property Type="Double" Name="Other_fees" />
+          <Property Type="Double" Name="Total_costs" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Create_Date" Precision="0" />
+          <Property Type="String" Name="Create_User" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Service_Criteria">
+          <Key>
+            <PropertyRef Name="ID_Details" />
+          </Key>
+          <Property Type="Int32" Name="ID_Details" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Details" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID_Rate" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Create_Date" Precision="0" />
+          <Property Type="String" Name="Create_User" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User_Create_Rate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Id_User_Name" />
+          <Property Type="Double" Name="Rate" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Create_Date" Precision="0" />
+          <Property Type="String" Name="Create_User" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Id_rate" />
+        </EntityType>
+        <ComplexType Name="Get_List_Chi_Tiet_Dich_Vu_Result">
+          <Property Type="Int32" Name="ID_Details" Nullable="false" />
+          <Property Type="String" Name="Details" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ID_Rate" Nullable="true" />
+          <Property Type="Int32" Name="ID_Event" Nullable="true" />
+          <Property Type="Double" Name="Honorarium_fee" Nullable="true" />
+          <Property Type="Double" Name="Air_ticket" Nullable="true" />
+          <Property Type="Double" Name="Meal_fee" Nullable="true" />
+          <Property Type="Double" Name="Hotel_fee" Nullable="true" />
+          <Property Type="Double" Name="Car_rental" Nullable="true" />
+          <Property Type="Double" Name="Other_fees" Nullable="true" />
+          <Property Type="Double" Name="Total_costs" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_Service_User_Create_Rate_Result">
+          <Property Type="Int32" Name="Id_User_Name" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_Details" Nullable="false" />
+          <Property Type="Int32" Name="ID_Service_Criteria" Nullable="false" />
+          <Property Type="String" Name="Details" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ID_Rate" Nullable="true" />
+          <Property Type="String" Name="Rate_Name" Nullable="true" />
+          <Property Type="Int32" Name="ID_Event" Nullable="true" />
+          <Property Type="Double" Name="Honorarium_fee" Nullable="true" />
+          <Property Type="Double" Name="Air_ticket" Nullable="true" />
+          <Property Type="Double" Name="Meal_fee" Nullable="true" />
+          <Property Type="Double" Name="Hotel_fee" Nullable="true" />
+          <Property Type="Double" Name="Car_rental" Nullable="true" />
+          <Property Type="Double" Name="Other_fees" Nullable="true" />
+          <Property Type="Double" Name="Total_costs" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_Export_From_ToTime_Event_Payment_Result">
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Abbott_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Event_Time" Nullable="true" />
+          <Property Type="DateTime" Name="Request_Date" Nullable="true" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="Id_Event" Nullable="true" />
+          <Property Type="String" Name="HCP_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Number_Contract" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FromDate" Nullable="true" />
+          <Property Type="DateTime" Name="ToDate" Nullable="true" />
+          <Property Type="Double" Name="Value_Contract" Nullable="true" />
+          <Property Type="DateTime" Name="PPL_GetContract_Date" Nullable="true" />
+          <Property Type="String" Name="Rep_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Sup_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description1" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="PPL_Payment_Date" Nullable="true" />
+          <Property Type="Double" Name="Payment_Value" Nullable="true" />
+          <Property Type="Boolean" Name="Invoice_Abbott" Nullable="true" />
+          <Property Type="DateTime" Name="Report_Abbott_Date" Nullable="true" />
+          <Property Type="String" Name="Note1" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Details" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="Honorarium_fee" Nullable="true" />
+          <Property Type="Double" Name="Air_ticket" Nullable="true" />
+          <Property Type="Double" Name="Meal_fee" Nullable="true" />
+          <Property Type="Double" Name="Hotel_fee" Nullable="true" />
+          <Property Type="Double" Name="Car_rental" Nullable="true" />
+          <Property Type="Double" Name="Other_fees" Nullable="true" />
+          <Property Type="Double" Name="Total_costs" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" />
+          <Property Type="String" Name="Create_User" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Get_Export_From_ToTime_HCP_Info_Result">
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Citizen_ID" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Issue_Date" Nullable="true" />
+          <Property Type="String" Name="Place_Issue" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="PIT_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Birth_Day" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Bank_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Bank_Account" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity_Event" Nullable="true" />
+          <Property Type="Double" Name="Money_Received" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" />
+          <Property Type="String" Name="Create_User" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="HCP_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Full_Name" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Citizen_ID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Issue_Date" Precision="0" />
+          <Property Type="String" Name="Place_Issue" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PIT_Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Position" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Birth_Day" Precision="0" />
+          <Property Type="String" Name="Address" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Bank_Name" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Bank_Account" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Quantity_Event" />
+          <Property Type="Double" Name="Money_Received" />
+          <Property Type="String" Name="Note" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Create_Date" Precision="0" />
+          <Property Type="String" Name="Create_User" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="CMND_MT" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="CMND_MS" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="Get_List_HCP_Info_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Citizen_ID" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Issue_Date" Nullable="true" />
+          <Property Type="String" Name="Place_Issue" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="PIT_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="Birth_Day" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Bank_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Bank_Account" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity_Event" Nullable="true" />
+          <Property Type="Double" Name="Money_Received" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" />
+          <Property Type="String" Name="Create_User" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="CMND_MT" Nullable="true" />
+          <Property Type="Binary" Name="CMND_MS" Nullable="true" />
+          <Property Type="Int32" Name="History" Nullable="true" />
+          <Property Type="Double" Name="Total_Amount" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HCB_ABBOTTModelStoreContainer" CdmEntityContainer="HCB_ABBOTTEntities">
+          <EntitySetMapping Name="Admin_Info">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.Admin_Info">
+              <MappingFragment StoreEntitySet="Admin_Info">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event_Info">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.Event_Info">
+              <MappingFragment StoreEntitySet="Event_Info">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id_Admin_Info" ColumnName="Id_Admin_Info" />
+                <ScalarProperty Name="Abbott_Code" ColumnName="Abbott_Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
+                <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Payment">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.History_Payment">
+              <MappingFragment StoreEntitySet="History_Payment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id_Event" ColumnName="Id_Event" />
+                <ScalarProperty Name="HCP_Code" ColumnName="HCP_Code" />
+                <ScalarProperty Name="Number_Contract" ColumnName="Number_Contract" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Value_Contract" ColumnName="Value_Contract" />
+                <ScalarProperty Name="PPL_GetContract_Date" ColumnName="PPL_GetContract_Date" />
+                <ScalarProperty Name="Rep_Name" ColumnName="Rep_Name" />
+                <ScalarProperty Name="Sup_Name" ColumnName="Sup_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Account_Name" ColumnName="Account_Name" />
+                <ScalarProperty Name="Requested_Value" ColumnName="Requested_Value" />
+                <ScalarProperty Name="Requested_Date" ColumnName="Requested_Date" />
+                <ScalarProperty Name="PPL_Payment_Date" ColumnName="PPL_Payment_Date" />
+                <ScalarProperty Name="Payment_Value" ColumnName="Payment_Value" />
+                <ScalarProperty Name="Invoice_Abbott" ColumnName="Invoice_Abbott" />
+                <ScalarProperty Name="Report_Abbott_Date" ColumnName="Report_Abbott_Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="List_Select_Place_Issue" FunctionName="HCB_ABBOTTModel.Store.List_Select_Place_Issue" />
+          <EntitySetMapping Name="UserNames">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.UserName">
+              <MappingFragment StoreEntitySet="UserName">
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName1" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_List_Event_Info" FunctionName="HCB_ABBOTTModel.Store.Get_List_Event_Info">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_List_Event_Info_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id_Admin_Info" ColumnName="Id_Admin_Info" />
+                <ScalarProperty Name="Abbott_Code" ColumnName="Abbott_Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
+                <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_History_Payment_By_Event" FunctionName="HCB_ABBOTTModel.Store.Get_History_Payment_By_Event">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_History_Payment_By_Event_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id_Event" ColumnName="Id_Event" />
+                <ScalarProperty Name="HCP_Code" ColumnName="HCP_Code" />
+                <ScalarProperty Name="Number_Contract" ColumnName="Number_Contract" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Value_Contract" ColumnName="Value_Contract" />
+                <ScalarProperty Name="PPL_GetContract_Date" ColumnName="PPL_GetContract_Date" />
+                <ScalarProperty Name="Rep_Name" ColumnName="Rep_Name" />
+                <ScalarProperty Name="Sup_Name" ColumnName="Sup_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Account_Name" ColumnName="Account_Name" />
+                <ScalarProperty Name="Requested_Value" ColumnName="Requested_Value" />
+                <ScalarProperty Name="Requested_Date" ColumnName="Requested_Date" />
+                <ScalarProperty Name="PPL_Payment_Date" ColumnName="PPL_Payment_Date" />
+                <ScalarProperty Name="Payment_Value" ColumnName="Payment_Value" />
+                <ScalarProperty Name="Invoice_Abbott" ColumnName="Invoice_Abbott" />
+                <ScalarProperty Name="Report_Abbott_Date" ColumnName="Report_Abbott_Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Citizen_ID" ColumnName="Citizen_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Rates">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.Rate">
+              <MappingFragment StoreEntitySet="Rate">
+                <ScalarProperty Name="Rate_Value" ColumnName="Rate_Value" />
+                <ScalarProperty Name="Rate_Name" ColumnName="Rate_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_Cost">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.Service_Cost">
+              <MappingFragment StoreEntitySet="Service_Cost">
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Total_costs" ColumnName="Total_costs" />
+                <ScalarProperty Name="Other_fees" ColumnName="Other_fees" />
+                <ScalarProperty Name="Car_rental" ColumnName="Car_rental" />
+                <ScalarProperty Name="Hotel_fee" ColumnName="Hotel_fee" />
+                <ScalarProperty Name="Meal_fee" ColumnName="Meal_fee" />
+                <ScalarProperty Name="Air_ticket" ColumnName="Air_ticket" />
+                <ScalarProperty Name="Honorarium_fee" ColumnName="Honorarium_fee" />
+                <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
+                <ScalarProperty Name="ID_Service_Criteria" ColumnName="ID_Service_Criteria" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_Criteria">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.Service_Criteria">
+              <MappingFragment StoreEntitySet="Service_Criteria">
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID_Rate" ColumnName="ID_Rate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="ID_Details" ColumnName="ID_Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Create_Rate">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.User_Create_Rate">
+              <MappingFragment StoreEntitySet="User_Create_Rate">
+                <ScalarProperty Name="Id_rate" ColumnName="Id_rate" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Id_User_Name" ColumnName="Id_User_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_List_Chi_Tiet_Dich_Vu" FunctionName="HCB_ABBOTTModel.Store.Get_List_Chi_Tiet_Dich_Vu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_List_Chi_Tiet_Dich_Vu_Result">
+                <ScalarProperty Name="ID_Details" ColumnName="ID_Details" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="ID_Rate" ColumnName="ID_Rate" />
+                <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
+                <ScalarProperty Name="Honorarium_fee" ColumnName="Honorarium_fee" />
+                <ScalarProperty Name="Air_ticket" ColumnName="Air_ticket" />
+                <ScalarProperty Name="Meal_fee" ColumnName="Meal_fee" />
+                <ScalarProperty Name="Hotel_fee" ColumnName="Hotel_fee" />
+                <ScalarProperty Name="Car_rental" ColumnName="Car_rental" />
+                <ScalarProperty Name="Other_fees" ColumnName="Other_fees" />
+                <ScalarProperty Name="Total_costs" ColumnName="Total_costs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_Service_Cost_byUsr" FunctionName="HCB_ABBOTTModel.Store.Get_Service_Cost_byUsr" />
+          <FunctionImportMapping FunctionImportName="Get_Service_User_Create_Rate" FunctionName="HCB_ABBOTTModel.Store.Get_Service_User_Create_Rate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_Service_User_Create_Rate_Result">
+                <ScalarProperty Name="Id_User_Name" ColumnName="Id_User_Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID_Details" ColumnName="ID_Details" />
+                <ScalarProperty Name="ID_Service_Criteria" ColumnName="ID_Service_Criteria" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="ID_Rate" ColumnName="ID_Rate" />
+                <ScalarProperty Name="Rate_Name" ColumnName="Rate_Name" />
+                <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
+                <ScalarProperty Name="Honorarium_fee" ColumnName="Honorarium_fee" />
+                <ScalarProperty Name="Air_ticket" ColumnName="Air_ticket" />
+                <ScalarProperty Name="Meal_fee" ColumnName="Meal_fee" />
+                <ScalarProperty Name="Hotel_fee" ColumnName="Hotel_fee" />
+                <ScalarProperty Name="Car_rental" ColumnName="Car_rental" />
+                <ScalarProperty Name="Other_fees" ColumnName="Other_fees" />
+                <ScalarProperty Name="Total_costs" ColumnName="Total_costs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRate_byUsr" FunctionName="HCB_ABBOTTModel.Store.GetRate_byUsr" />
+          <FunctionImportMapping FunctionImportName="Get_Export_From_ToTime_Event_Payment" FunctionName="HCB_ABBOTTModel.Store.Get_Export_From_ToTime_Event_Payment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_Export_From_ToTime_Event_Payment_Result">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Abbott_Code" ColumnName="Abbott_Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
+                <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Id_Event" ColumnName="Id_Event" />
+                <ScalarProperty Name="HCP_Code" ColumnName="HCP_Code" />
+                <ScalarProperty Name="Number_Contract" ColumnName="Number_Contract" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Value_Contract" ColumnName="Value_Contract" />
+                <ScalarProperty Name="PPL_GetContract_Date" ColumnName="PPL_GetContract_Date" />
+                <ScalarProperty Name="Rep_Name" ColumnName="Rep_Name" />
+                <ScalarProperty Name="Sup_Name" ColumnName="Sup_Name" />
+                <ScalarProperty Name="Description1" ColumnName="Description1" />
+                <ScalarProperty Name="PPL_Payment_Date" ColumnName="PPL_Payment_Date" />
+                <ScalarProperty Name="Payment_Value" ColumnName="Payment_Value" />
+                <ScalarProperty Name="Invoice_Abbott" ColumnName="Invoice_Abbott" />
+                <ScalarProperty Name="Report_Abbott_Date" ColumnName="Report_Abbott_Date" />
+                <ScalarProperty Name="Note1" ColumnName="Note1" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Honorarium_fee" ColumnName="Honorarium_fee" />
+                <ScalarProperty Name="Air_ticket" ColumnName="Air_ticket" />
+                <ScalarProperty Name="Meal_fee" ColumnName="Meal_fee" />
+                <ScalarProperty Name="Hotel_fee" ColumnName="Hotel_fee" />
+                <ScalarProperty Name="Car_rental" ColumnName="Car_rental" />
+                <ScalarProperty Name="Other_fees" ColumnName="Other_fees" />
+                <ScalarProperty Name="Total_costs" ColumnName="Total_costs" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_Export_From_ToTime_HCP_Info" FunctionName="HCB_ABBOTTModel.Store.Get_Export_From_ToTime_HCP_Info">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_Export_From_ToTime_HCP_Info_Result">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Citizen_ID" ColumnName="Citizen_ID" />
+                <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
+                <ScalarProperty Name="Place_Issue" ColumnName="Place_Issue" />
+                <ScalarProperty Name="PIT_Code" ColumnName="PIT_Code" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Birth_Day" ColumnName="Birth_Day" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+                <ScalarProperty Name="Bank_Account" ColumnName="Bank_Account" />
+                <ScalarProperty Name="Quantity_Event" ColumnName="Quantity_Event" />
+                <ScalarProperty Name="Money_Received" ColumnName="Money_Received" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="HCP_Info">
+            <EntityTypeMapping TypeName="HCB_ABBOTTModel.HCP_Info">
+              <MappingFragment StoreEntitySet="HCP_Info">
+                <ScalarProperty Name="CMND_MS" ColumnName="CMND_MS" />
+                <ScalarProperty Name="CMND_MT" ColumnName="CMND_MT" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Money_Received" ColumnName="Money_Received" />
+                <ScalarProperty Name="Quantity_Event" ColumnName="Quantity_Event" />
+                <ScalarProperty Name="Bank_Account" ColumnName="Bank_Account" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Birth_Day" ColumnName="Birth_Day" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="PIT_Code" ColumnName="PIT_Code" />
+                <ScalarProperty Name="Place_Issue" ColumnName="Place_Issue" />
+                <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
+                <ScalarProperty Name="Citizen_ID" ColumnName="Citizen_ID" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_List_HCP_Info" FunctionName="HCB_ABBOTTModel.Store.Get_List_HCP_Info">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HCB_ABBOTTModel.Get_List_HCP_Info_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Citizen_ID" ColumnName="Citizen_ID" />
+                <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
+                <ScalarProperty Name="Place_Issue" ColumnName="Place_Issue" />
+                <ScalarProperty Name="PIT_Code" ColumnName="PIT_Code" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Birth_Day" ColumnName="Birth_Day" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+                <ScalarProperty Name="Bank_Account" ColumnName="Bank_Account" />
+                <ScalarProperty Name="Quantity_Event" ColumnName="Quantity_Event" />
+                <ScalarProperty Name="Money_Received" ColumnName="Money_Received" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+                <ScalarProperty Name="CMND_MT" ColumnName="CMND_MT" />
+                <ScalarProperty Name="CMND_MS" ColumnName="CMND_MS" />
+                <ScalarProperty Name="History" ColumnName="History" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

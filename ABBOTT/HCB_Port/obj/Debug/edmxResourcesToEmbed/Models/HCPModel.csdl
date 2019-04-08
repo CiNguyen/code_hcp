@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HCB_ABBOTTModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HCB_ABBOTTEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin_Info" EntityType="HCB_ABBOTTModel.Admin_Info" />
+    <EntitySet Name="Event_Info" EntityType="HCB_ABBOTTModel.Event_Info" />
+    <EntitySet Name="HCP_Info" EntityType="HCB_ABBOTTModel.HCP_Info" />
+    <EntitySet Name="History_Payment" EntityType="HCB_ABBOTTModel.History_Payment" />
+    <EntitySet Name="UserNames" EntityType="HCB_ABBOTTModel.UserName" />
+  </EntityContainer>
+  <EntityType Name="Admin_Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FullName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Region" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Area" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Event_Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Admin_Info" Type="Int32" />
+    <Property Name="Abbott_Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Event_Time" Type="DateTime" Precision="0" />
+    <Property Name="Request_Date" Type="DateTime" Precision="0" />
+    <Property Name="Area" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Note" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="HCP_Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Full_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Citizen_ID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Issue_Date" Type="DateTime" Precision="0" />
+    <Property Name="Place_Issue" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="PIT_Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Position" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Birth_Day" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Bank_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Bank_Account" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Note" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="History_Payment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Event" Type="Int32" />
+    <Property Name="HCP_Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Number_Contract" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <Property Name="Value_Contract" Type="Double" />
+    <Property Name="PPL_GetContract_Date" Type="DateTime" Precision="0" />
+    <Property Name="Rep_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Sup_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Account_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Requested_Value" Type="Double" />
+    <Property Name="Requested_Date" Type="DateTime" Precision="0" />
+    <Property Name="PPL_Payment_Date" Type="DateTime" Precision="0" />
+    <Property Name="Payment_Value" Type="Double" />
+    <Property Name="Invoice_Abbott" Type="Boolean" />
+    <Property Name="Report_Abbott_Date" Type="DateTime" Precision="0" />
+    <Property Name="Note" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FullName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="PassWord" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="Create_User" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

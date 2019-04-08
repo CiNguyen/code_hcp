@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f4f0ee77d744dbf8399e27ea7537791" Name="Diagram1">
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.Admin_Info" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.Event_Info" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.History_Payment" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="HCB_ABBOTTModel.FK_Event_Info_Admin_Info" />
+        <AssociationConnector Association="HCB_ABBOTTModel.FK_History_Payment_Event_Info" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.UserName" Width="1.5" PointX="4.875" PointY="2.25" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.Rate" Width="1.5" PointX="14.5" PointY="7.875" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.Service_Cost" Width="1.5" PointX="4.875" PointY="8.375" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.Service_Criteria" Width="1.5" PointX="7.625" PointY="9.375" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.User_Create_Rate" Width="1.5" PointX="7.625" PointY="11.875" />
+        <EntityTypeShape EntityType="HCB_ABBOTTModel.HCP_Info" Width="1.5" PointX="3.071221597060199" PointY="7.1837434057070606" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

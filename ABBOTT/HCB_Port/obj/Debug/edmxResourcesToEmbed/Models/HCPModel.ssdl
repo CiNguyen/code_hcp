@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HCB_ABBOTTModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HCB_ABBOTTModelStoreContainer">
+    <EntitySet Name="Admin_Info" EntityType="HCB_ABBOTTModel.Store.Admin_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Event_Info" EntityType="HCB_ABBOTTModel.Store.Event_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HCP_Info" EntityType="HCB_ABBOTTModel.Store.HCP_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="History_Payment" EntityType="HCB_ABBOTTModel.Store.History_Payment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserName" EntityType="HCB_ABBOTTModel.Store.UserName" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Admin_Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Region" Type="nvarchar" MaxLength="150" />
+    <Property Name="Area" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Create_Date" Type="date" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Event_Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Admin_Info" Type="int" />
+    <Property Name="Abbott_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Event_Time" Type="date" />
+    <Property Name="Request_Date" Type="date" />
+    <Property Name="Area" Type="nvarchar" MaxLength="150" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Create_Date" Type="date" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HCP_Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Full_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Citizen_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Issue_Date" Type="date" />
+    <Property Name="Place_Issue" Type="nvarchar" MaxLength="150" />
+    <Property Name="PIT_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Position" Type="nvarchar" MaxLength="150" />
+    <Property Name="Birth_Day" Type="date" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Bank_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Bank_Account" Type="nvarchar" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Create_Date" Type="date" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="History_Payment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Event" Type="int" />
+    <Property Name="HCP_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Number_Contract" Type="nvarchar" MaxLength="150" />
+    <Property Name="FromDate" Type="date" />
+    <Property Name="ToDate" Type="date" />
+    <Property Name="Value_Contract" Type="float" />
+    <Property Name="PPL_GetContract_Date" Type="date" />
+    <Property Name="Rep_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Sup_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Account_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Requested_Value" Type="float" />
+    <Property Name="Requested_Date" Type="date" />
+    <Property Name="PPL_Payment_Date" Type="date" />
+    <Property Name="Payment_Value" Type="float" />
+    <Property Name="Invoice_Abbott" Type="bit" />
+    <Property Name="Report_Abbott_Date" Type="date" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Create_Date" Type="date" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Create_Date" Type="date" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+</Schema>

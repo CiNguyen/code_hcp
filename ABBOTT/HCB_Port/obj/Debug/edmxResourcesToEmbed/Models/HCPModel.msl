@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HCB_ABBOTTModelStoreContainer" CdmEntityContainer="HCB_ABBOTTEntities">
+    <EntitySetMapping Name="Admin_Info">
+      <EntityTypeMapping TypeName="HCB_ABBOTTModel.Admin_Info">
+        <MappingFragment StoreEntitySet="Admin_Info">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Event_Info">
+      <EntityTypeMapping TypeName="HCB_ABBOTTModel.Event_Info">
+        <MappingFragment StoreEntitySet="Event_Info">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Id_Admin_Info" ColumnName="Id_Admin_Info" />
+          <ScalarProperty Name="Abbott_Code" ColumnName="Abbott_Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
+          <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HCP_Info">
+      <EntityTypeMapping TypeName="HCB_ABBOTTModel.HCP_Info">
+        <MappingFragment StoreEntitySet="HCP_Info">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Citizen_ID" ColumnName="Citizen_ID" />
+          <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
+          <ScalarProperty Name="Place_Issue" ColumnName="Place_Issue" />
+          <ScalarProperty Name="PIT_Code" ColumnName="PIT_Code" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Birth_Day" ColumnName="Birth_Day" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+          <ScalarProperty Name="Bank_Account" ColumnName="Bank_Account" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Payment">
+      <EntityTypeMapping TypeName="HCB_ABBOTTModel.History_Payment">
+        <MappingFragment StoreEntitySet="History_Payment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Id_Event" ColumnName="Id_Event" />
+          <ScalarProperty Name="HCP_Code" ColumnName="HCP_Code" />
+          <ScalarProperty Name="Number_Contract" ColumnName="Number_Contract" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="Value_Contract" ColumnName="Value_Contract" />
+          <ScalarProperty Name="PPL_GetContract_Date" ColumnName="PPL_GetContract_Date" />
+          <ScalarProperty Name="Rep_Name" ColumnName="Rep_Name" />
+          <ScalarProperty Name="Sup_Name" ColumnName="Sup_Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Account_Name" ColumnName="Account_Name" />
+          <ScalarProperty Name="Requested_Value" ColumnName="Requested_Value" />
+          <ScalarProperty Name="Requested_Date" ColumnName="Requested_Date" />
+          <ScalarProperty Name="PPL_Payment_Date" ColumnName="PPL_Payment_Date" />
+          <ScalarProperty Name="Payment_Value" ColumnName="Payment_Value" />
+          <ScalarProperty Name="Invoice_Abbott" ColumnName="Invoice_Abbott" />
+          <ScalarProperty Name="Report_Abbott_Date" ColumnName="Report_Abbott_Date" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNames">
+      <EntityTypeMapping TypeName="HCB_ABBOTTModel.UserName">
+        <MappingFragment StoreEntitySet="UserName">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName1" ColumnName="UserName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

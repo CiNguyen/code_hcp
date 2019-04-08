@@ -1,0 +1,255 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="shortcut icon" href="../../Contents/img/logo/fav.ico" />
+
+    <link rel="stylesheet" href="/Contents/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Contents/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/Contents/css/weather-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.4/css/fixedHeader.bootstrap4.min.css" />
+    <!--lobiadmin-with-plugins.css contains all LobiAdmin css plus lobiplugins all css files, plus third party plugins-->
+    <!--Put your css here-->
+    <link href="../../Contents/css/lobiadmin-with-plugins.css" rel="stylesheet" />
+    <link href="../../Contents/css/select2.min.css" rel="stylesheet" />
+    <link href="../../Contents/css/datepicker.css" rel="stylesheet" />
+    <link href="../../Contents/css/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="../../Contents/css/datatables/dataTables.tableTools.css" rel="stylesheet" />
+    <!--This css file is for only demo usage-->
+    <link rel="stylesheet" href="/Contents/css/demo.css" />
+    <style type="text/css">
+        /* Scrolling*/
+        .scrolling {
+            overflow: auto;
+        }
+
+        th, td {
+            white-space: nowrap;
+        }
+        /* Block out the gap above the scrollbar on the right, when there is a fixed
+ * right column
+ */
+        div.DTFC_Blocker {
+            background-color: white;
+        }
+
+        div.DTFC_LeftWrapper table.dataTable,
+        div.DTFC_RightWrapper table.dataTable {
+            margin-bottom: 0;
+        }
+
+            div.DTFC_LeftWrapper table.dataTable.no-footer,
+            div.DTFC_RightWrapper table.dataTable.no-footer {
+                border-bottom: none;
+            }
+    </style>
+</head>
+<body class="" style="background: url(/Contents/img/bg/bg4.png);">
+    <nav class="navbar navbar-default navbar-header header">
+        <a class="navbar-brand" href="#" style="color: white;">
+            <div class="navbar-brand-img">
+            </div>
+            <span id="user_name"></span>
+        </a>
+        <!--Menu show/hide toggle button-->
+        <ul class="nav navbar-nav pull-left show-hide-menu">
+            <li>
+                <a href="#" class="border-radius-0 btn font-size-lg" data-action="show-hide-sidebar" onclick="showHideBtn()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+
+        <div class="navbar-items">
+            <!--User avatar dropdown-->
+            <ul class="nav navbar-nav navbar-right user-actions">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img class="user-avatar" src="/Contents/img/users/user.png" alt="..." />
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu animated-fast">
+                        <li><a href="/GUI/Index"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix-xxs"></div>
+
+    </nav>
+    <div class="menu">
+        <div class="menu-heading">
+            <div class="menu-header-buttons-wrapper clearfix">
+                <button type="button" class="btn btn-info btn-menu-header-collapse">
+                    <i class="fa fa-cogs"></i>
+                </button>
+                <!--Put your favourite pages here-->
+                <div class="menu-header-buttons">
+                    <a href="#profile" class="btn btn-info btn-outline" data-title="Profile">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <a href="#invoice" class="btn btn-info btn-outline" data-title="Invoice">
+                        <i class="fa fa-file-pdf-o"></i>
+                    </a>
+                    <a href="#lobimail" class="btn btn-info btn-outline" data-title="Inbox">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                    <a href="#calendar" class="btn btn-info btn-outline" data-title="Calendar">
+                        <i class="fa fa-calendar"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="Javarscript:;" onclick="return Dashboard_Load();">
+                        <i class="fa fa-home menu-item-icon"></i>
+                        <span class="inner-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Javarscript:;" onclick="return HCP_Load();">
+                        <i class="fa fa-share-alt menu-item-icon"></i>
+                        <span class="inner-text">HCP INFO</span>
+                        <%--<span class="badge-wrapper"><span class="badge badge-xs badge-cyan">4</span></span>--%>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="Javarscript:;" onclick="return History_Load();">
+                        <i class="fa fa-area-chart menu-item-icon"></i>
+                        <span class="inner-text">Event & Payment</span>
+                    </a>
+
+                </li>
+
+            </ul>
+        </nav>
+        <div class="menu-collapse-line">
+            <!--Menu collapse/expand icon is put and control from LobiAdmin.js file-->
+            <div class="menu-toggle-btn" data-action="collapse-expand-sidebar">
+                <i class="fa fa-chevron-circle-left" onclick="menu_click()"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Loading indicator for ajax page loading-->
+    <div class="spinner spinner-horizontal hide">
+        <span class="spinner-text">Loading...</span>
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+    <%--  --%>
+    <div id="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="myModal" class="modal fade bs-example-modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div id="myMid" class="modal fade bs-example-modal-md">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div id="mysmal" class="modal fade bs-example-modal-sm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <script type="text/javascript" src="/Contents/js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="/Contents/js/lib/jquery-ui.min.js"></script>
+    <script src="../../Contents/js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../Contents/js/plugin/datatables/jquery.dataTables_2.js"></script>
+    <script src="../../Contents/js/plugin/datatables/dataTables.bootstrap.js"></script>
+    <script src="../../Contents/js/plugin/datatables/dataTables.fixedColumns.js"></script>
+    <script src="../../Contents/js/plugin/datatables/dataTables.tableTools.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/currency.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.4/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../../Contents/js/lobi-plugins/lobibox.min.js"></script>
+    <script src="../../Contents/js/lobi-plugins/lobipanel.min.js"></script>
+    <script src="../../Contents/js/lobi-plugins/lobitab.min.js"></script>
+    <script src="../../Contents/js/lobi-plugins/lobilist.min.js"></script>
+    <script src="../../Contents/js/lobi-plugins/lobimail.min.js"></script>
+    <script type="text/javascript" src="/Contents/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="../../Contents/js/plugin/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../../Contents/js/plugin/select2/select2.min.js"></script>
+    <script type="text/javascript" src="/Contents/js/app.js"></script>
+    <script type="text/javascript" src="/Contents/js/demo.js"></script>
+    <script type="text/javascript">
+        function Dashboard_Load() {
+            waitting_load();
+            $("#Main_Load").load("/Index/Dashboard");
+        }
+        function HCP_Load() {
+            waitting_load();
+            $("#Main_Load").load("/Index/HCP_Info");
+        }
+        function History_Load() {
+            waitting_load();
+            $("#Main_Load").load("/Index/Event_Payment");
+        }
+        function waitting_load() {
+            $("#overlay").addClass("overlay");
+            $("#loading").addClass("loading-img");
+        }
+        function done_load() {
+            setTimeout(function () {
+                $("#overlay").removeClass("overlay");
+                $("#loading").removeClass("loading-img");
+            }, 300);
+        }
+        $(document).ready(function () {
+            var usrname = '<%=Session["user"] %>';
+            if (usrname !== '') {
+                $('#user_name').text(usrname);
+            }
+            else {
+                window.location.href = '../'
+            }
+        });
+        $(document.body).on('hidden.bs.modal', function () {
+            $('#myModal').removeData('bs.modal');
+            $('#showerror').removeData('bs.modal');
+            $('#showsuccess').removeData('bs.modal');
+            $('#mysmal').removeData('bs.modal');
+        });
+
+        //Edit SL: more universal
+        $(document).on('hidden.bs.modal', function (e) {
+            $(e.target).removeData('bs.modal');
+        });
+        function convert_SerializeArray_to_JSON(idForm) {
+            var data = $("#" + idForm).serializeArray();
+            var obj = {};
+            for (var key in data) {
+                obj[data[key].name] = data[key].value;
+            }
+            return obj;
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="JS" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
